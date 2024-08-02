@@ -1,16 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import "./App.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
+import TimezoneConverter from "./pages/TimezoneConverter"; 
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* Add more routes as needed */}
-      </Routes>
-    </Router>
+    <ChakraProvider>
+      <Navbar />
+      <TimezoneConverter />
+    </ChakraProvider>
   );
 }
 
