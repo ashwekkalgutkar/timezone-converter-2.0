@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box, Flex, IconButton, Tooltip } from "@chakra-ui/react";
-import { FaExchangeAlt } from "react-icons/fa";
+import { FaExchangeAlt, FaCalendarPlus, FaCalendar } from "react-icons/fa";
 import moment from "moment";
 import TimezoneSearchAndSelect from "./TimezoneSearchAndSelect";
 import { INIT_FORMATTED_TIME_ZONES } from "../../assets/timezone";
 import DatePicker from "./DatePicker";
-import ScheduleMeetButton from "./ScheduleMeetButton";
 import TimezoneSlider from "./TimezoneSlider";
 import TimezoneList from "./TimezoneList";
 
@@ -19,10 +18,12 @@ const ConverterSection = () => {
   };
 
   const handleTimezoneSelect = (timezone) => {
-    if (!timezones.find((tz) => tz.value === timezone.value)) {
+    if (timezone && !timezones.find((tz) => tz.value === timezone.value)) {
       const newTimeZones = [...timezones, timezone];
       newLocalStorageTimezones(newTimeZones);
       setTimezones(newTimeZones);
+    } else if (timezone === null) {
+      console.log("Timezone selection cleared");
     }
   };
 
@@ -51,6 +52,16 @@ const ConverterSection = () => {
     setTimezones(reorderedTimezones);
   };
 
+  const handleScheduleMeet = () => {
+    const startTime = moment(time).utc().format("YYYYMMDDTHHmmss") + "Z";
+    const endTime =
+      moment(time).add(2, "hours").utc().format("YYYYMMDDTHHmmss") + "Z";
+
+    const meetUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${startTime}/${endTime}`;
+
+    window.open(meetUrl, "_blank");
+  };
+
   useEffect(() => {
     try {
       const localStorageTimeZones = localStorage.getItem(
@@ -72,7 +83,7 @@ const ConverterSection = () => {
   }, []);
 
   return (
-    <Box>
+    <Box width="100%" p={4}>
       <TimezoneSearchAndSelect onSelect={handleTimezoneSelect} />
       <Flex
         justifyContent={["center", "space-between"]}
@@ -81,6 +92,7 @@ const ConverterSection = () => {
         mt={2}
         flexDir={["column", "row"]}
         gap={4}
+        width="100%"
       >
         <Tooltip label="Reverse Timezones">
           <IconButton
@@ -98,7 +110,34 @@ const ConverterSection = () => {
           selectedDate={selectedDate}
           handleDateAndTimeChange={handleDateAndTimeChange}
         />
-        <ScheduleMeetButton time={time} />
+        <Flex direction="column" align="center" gap={2}>
+          <Tooltip label="Schedule Meet">
+            <IconButton
+              icon={<FaCalendarPlus />}
+              size="lg"
+              onClick={handleScheduleMeet}
+              colorScheme={"linkedin"}
+              border={"2px solid #2f59ff"}
+              p={"22px"}
+              fontWeight={400}
+              aria-label="Schedule Meet"
+            />
+          </Tooltip>
+          <Tooltip label="View Schedule">
+            <IconButton
+              icon={<FaCalendar />}
+              size="lg"
+              onClick={() =>
+                window.open(`https://calendar.google.com`, "_blank")
+              }
+              colorScheme={"linkedin"}
+              border={"2px solid #2f59ff"}
+              p={"22px"}
+              fontWeight={400}
+              aria-label="View Schedule"
+            />
+          </Tooltip>
+        </Flex>
       </Flex>
       <TimezoneSlider
         value={moment.utc(time).hours()}
