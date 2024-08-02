@@ -1,0 +1,54 @@
+body {
+  font-size: 18px;
+}
+
+
+.rc-slider {
+  position: relative;
+  height: 20px;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 6px;
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+.rc-slider-rail {
+  position: absolute;
+  width: 100%;
+  background-color: #d3d3d3;
+  height: 6px;
+  border-radius: 6px;
+}
+
+.rc-slider-track {
+  position: absolute;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #2f59ff;
+}
+
+.rc-slider-handle {
+  position: absolute;
+  margin-left: -7px;
+  margin-top: -5px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: solid 2px #2f59ff;
+  background-color: #2f59ff;
+  touch-action: pan-x;
+}
+
+.rc-slider-handle:hover {
+  border-color: #2f59ff;
+}
+
+.rc-slider-handle:focus {
+  border-color: #2f59ff;
+}
+
+.rc-slider-handle:active {
+  border-color: #2f59ff;
+}
