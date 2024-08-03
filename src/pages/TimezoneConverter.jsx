@@ -43,7 +43,20 @@ const timezonesList = [
 const TimezoneConverter = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [timezones, setTimezones] = useState([]);
+  const [timezones, setTimezones] = useState([
+    {
+      id: 1,
+      name: 'UTC',
+      offset: 0,
+      time: moment.utc(),
+    },
+    {
+      id: 2,
+      name: 'IST',
+      offset: 5.5,
+      time: moment.utc().add(5.5, 'hours'),
+    },
+  ]);
   const [selectedTimezone, setSelectedTimezone] = useState('');
 
   // Use colorModeValue hook at the top level
