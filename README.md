@@ -43,7 +43,7 @@ Easily manage and convert time across multiple timezones with our sleek and intu
 ## 🎨 Screenshots
 
 - **Light mode:**
-  ![light mode](https://drive.google.com/file/d/1YuzP5kJyUla_oxSvDYRW4T-VntBroh9H/view?usp=sharing)
+  ![light mode](https://github.com/ashwekkalgutkar/timezone-converter-2.0/blob/main/src/assets/lightmode.png?raw=true)
 
 - **Dark mode:**
-  ![dark mode](https://drive.google.com/file/d/1bVpeY1UIwgKfZBa1iw1FaR_3jtvzbZnF/view?usp=sharing)
+  ![dark mode](https://github.com/ashwekkalgutkar/timezone-converter-2.0/blob/main/src/assets/darkmode.png?raw=true)
